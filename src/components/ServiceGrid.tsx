@@ -1,5 +1,5 @@
-import React from 'react';
 import { useAppSelector } from '../hooks/useRedux';
+import { Link } from 'react-router-dom';
 
 const ServiceGrid: React.FC = () => {
   const { data: services, loading } = useAppSelector((state) => state.services);
@@ -20,8 +20,9 @@ const ServiceGrid: React.FC = () => {
   return (
     <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-x-2 gap-y-6 py-8">
       {services.map((service) => (
-        <div 
+        <Link 
           key={service.service_code}
+          to={`/transaksi/${service.service_code}`}
           className="flex flex-col items-center text-center gap-2 group cursor-pointer transition-transform hover:-translate-y-1"
         >
           <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-slate-50 border border-slate-50 transition-colors group-hover:border-red-100 group-hover:bg-red-50/30 overflow-hidden p-0">
@@ -34,7 +35,7 @@ const ServiceGrid: React.FC = () => {
           <p className="text-[10px] font-medium text-slate-700 leading-tight">
             {service.service_name}
           </p>
-        </div>
+        </Link>
       ))}
     </div>
   );
