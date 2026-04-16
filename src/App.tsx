@@ -18,6 +18,7 @@ const TopUp = lazy(() => import('./pages/TopUp'));
 const Payment = lazy(() => import('./pages/Payment'));
 const TransactionHistory = lazy(() => import('./pages/TransactionHistory'));
 const ProfilePage = lazy(() => import('./pages/Profile'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
@@ -39,9 +40,9 @@ function App() {
           <Route path="/transaction" element={<PrivateRoute><TransactionHistory /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
 
-          {/* Fallback - Jika rute tidak ditemukan atau akses root, arahkan ke dashboard */}
+          {/* Fallback - Jika rute tidak ditemukan, tampilkan halaman 404 */}
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </>
